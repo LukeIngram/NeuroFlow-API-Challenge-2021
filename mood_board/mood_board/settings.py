@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
-import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
-
-SECRET_KEY = os.environ['SECRET_KEY']
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY ='4zDGzjI9ShiTHAHKFeMe0wpKqg4K1illAHN52CXVEsTYZf9w3r11V4rOGT\
+    dybIiyE3WW1jMmFEVGJ6gDRPE6RJjNSPXITk0aMGE94FeTiF6rwxga2hFHhE59K5IC8NiFA6b40gxV2Feev6wOG6Fvm2\
+    0swa179xw8m7jiyTnBRa9xkKIBr07Hj6XCsJI1Ey9vQMReg1z14ceI82TM66ZC4cnWq84V7LL2v8ym2XV4rE20cQo05J\
+    LRYH4Mzp5k8TdV8Wff1qIUUlRJU7E61LHi8jD0g8nBx6QdwszNh9H7xDDN22l3Merin2F4mKEbMbx8U6BkV6YcLZNOW8\
+    EY5qdrxvjqZSTHLx05u66EVQu6vxfft2QzHOFnvEreW9NGVtDh4XgWgimzU3feG4TJ0GcpFhXBsLdGYFa6DU9RU1m4m4\
+    swej4p4mwfi3Ej3q418q3KXY33X6gL5Q5TgTlfXyVFAVo5sGztRm04YK2160a3Je1hvUJ1Q3lz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,9 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'api_app',
+    'rest_api',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'mood_board.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,5 +131,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
