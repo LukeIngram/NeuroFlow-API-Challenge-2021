@@ -1,3 +1,4 @@
 from django.contrib import admin
+from mood_board.rest_api.models import moodEntry
 
-# Register your models here.
+admin.site.register(moodEntry)

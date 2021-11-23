@@ -19,6 +19,6 @@ from rest_api.urls import router
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api-auth/', include(router.urls)),
+    path(r'admin/', admin.site.urls),
+    path(r'api/', include('rest_api.urls')),
 ]
