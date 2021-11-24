@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from rest_api.urls import router
-
 
 urlpatterns = [
     path(r'admin/', admin.site.urls),
-    path(r'api/', include('rest_api.urls')),
+    path(r'api/', include(('rest_api.urls','moodBoard'),namespace='moodBoard')),
+    path(r'api-auth',include('rest_framework.urls')),
 ]

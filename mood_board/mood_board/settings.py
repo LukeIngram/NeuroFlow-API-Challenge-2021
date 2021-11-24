@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY ='4zDGzjI9ShiTHAHKFeMe0wpKqg4K1illAHN52CXVEsTYZf9w3r11V4rOGT\
+SECRET_KEY = '4zDGzjI9ShiTHAHKFeMe0wpKqg4K1illAHN52CXVEsTYZf9w3r11V4rOGT\
     dybIiyE3WW1jMmFEVGJ6gDRPE6RJjNSPXITk0aMGE94FeTiF6rwxga2hFHhE59K5IC8NiFA6b40gxV2Feev6wOG6Fvm2\
     0swa179xw8m7jiyTnBRa9xkKIBr07Hj6XCsJI1Ey9vQMReg1z14ceI82TM66ZC4cnWq84V7LL2v8ym2XV4rE20cQo05J\
     LRYH4Mzp5k8TdV8Wff1qIUUlRJU7E61LHi8jD0g8nBx6QdwszNh9H7xDDN22l3Merin2F4mKEbMbx8U6BkV6YcLZNOW8\
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -136,6 +137,6 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+         'rest_framework.permissions.IsAuthenticated',
     ]
 }

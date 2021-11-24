@@ -9,7 +9,7 @@ class MoodEntrySerializer(serializers.ModelSerializer):
         model = moodEntry
         fields = ('id','status','created_at','created_by')
 
-class moodBoardSerializer(serializers.ModelSerializer): 
+class MoodBoardSerializer(serializers.ModelSerializer): 
     id = serializers.IntegerField(source='id')
     moodBoard = MoodEntrySerializer(many=True,read_only=True)
    
