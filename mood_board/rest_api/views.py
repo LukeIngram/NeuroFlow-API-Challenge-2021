@@ -22,7 +22,7 @@ class MoodEntryView(generics.RetrieveDestroyAPIView):
         entry = get_object_or_404(moodEntry,id=pk)
         entry.delete()
         return Response({'message': f'Entry {pk} Sucessfully Deleted'},status=status.HTTP_200_OK)
-    
+ 
 
 class MoodListView(generics.ListCreateAPIView): 
    
@@ -32,7 +32,6 @@ class MoodListView(generics.ListCreateAPIView):
     queryset = moodEntry.objects.all()
     serializer_class = MoodEntrySerializer
 
-    #TODO PATCH METHOD??
 
 class MoodBoardView(viewsets.ModelViewSet): 
    
@@ -41,11 +40,4 @@ class MoodBoardView(viewsets.ModelViewSet):
 
     queryset = get_user_model().objects.all()
     serializer_class = MoodBoardSerializer
-
-
-
-    
-
-#TODO MoodBoard View 
-
 

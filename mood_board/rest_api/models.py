@@ -9,11 +9,6 @@ class moodEntry(models.Model):
 
 
 
-    
-    #TODO USER MODLEl????
-
-
-
 
 
 
