@@ -1,13 +1,11 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.utils import timezone 
-from datetime import date
+from datetime import datetime,timedelta
 from unittest import mock
 from .models import * 
 from .views import *
 
-#TODO MOOD ENTRY TESTS 
 class Mood_Entry_Tests(TestCase): 
     def setUp(self): 
         testUser = User.objects.create_user(username='flynn',password='flynns_super_secret_password')
@@ -55,7 +53,6 @@ class Mood_Entry_Tests(TestCase):
         self.assertEqual(response.status_code,403) 
 
 
-#TODO MoodList TESTS
 class Mood_List_Tests(TestCase):
     def setUp(self): 
         testUser = User.objects.create_user(username='flynn',password='flynns_super_secret_password')

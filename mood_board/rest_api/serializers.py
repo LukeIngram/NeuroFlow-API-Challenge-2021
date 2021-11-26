@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import * 
-from django.contrib.auth.models import User
-from datetime import datetime,timedelta
+from datetime import timedelta
 from django.utils.timezone import utc
 from django.contrib.auth import get_user_model
 
@@ -18,9 +17,7 @@ class MoodBoardSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField()
     moodBoard = MoodEntrySerializer(many=True,read_only=True)
    
-   
     current_streak = serializers.SerializerMethodField(method_name='has_streak')
-    #TODO impliment streak calc
     def has_streak(self,user): 
         curr_streak = 1
         entry_dates = list(moodEntry.objects.values('created_at').filter(created_by=user).order_by('created_at'))
