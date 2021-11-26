@@ -13,7 +13,7 @@ class Mood_Entry_Tests(TestCase):
         test_entry = moodEntry.objects.create(id=1,status="Weary...",created_by=testUser)
         test_entry.save()
 
-    def test_mood_entry_has_user_and_satus(self): 
+    def test_mood_entry_has_user_and_status(self): 
         entry = moodEntry.objects.get(id=1)
         status = f'{entry.status}'
         user = f'{entry.created_by}'
@@ -155,7 +155,7 @@ class Entry_Streak_Tests(TestCase):
         response = self.client.get(reverse('moodBoard:moodBoard'))
         self.assertEqual(response.data[0]['current_streak'],3)
     
-    def test_user_has_20_day_streaK(self): 
+    def test_user_has_20_day_streak(self): 
         self.client.login(username='flynn', password='flynns_super_secret_password')
         for i in range(1,21): 
             mock_time = datetime.utcnow().replace(tzinfo=utc) + timedelta(days=(i-1))
