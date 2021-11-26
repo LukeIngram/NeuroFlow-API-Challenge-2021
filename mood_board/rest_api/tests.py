@@ -195,3 +195,17 @@ class Entry_Streak_Tests(TestCase):
                 test_entry.save()
         response = self.client.get(reverse('moodBoard:moodBoard'))
         self.assertEqual(response.data[0]['current_streak'],7)
+    
+    def test_user_deleting_entry_breaks_streak(self): 
+        self.client.login(username='flynn', password='flynns_super_secret_password')
+        for i in range(1,11): 
+            mock_time = datetime.utcnow().replace(tzinfo=utc) + timedelta(days=(i-1))
+            with mock.patch('django.utils.timezone.now') as mock_now:
+                mock_now.return_value = mock_time
+                test_entry = moodEntry.objects.create(id=i,status="test_mood%s"%(i),created_by=User.objects.get(username='flynn'))
+                test_entry.save()
+        r1 = self.client.get(reverse('moodBoard:moodBoard'))
+        self.assertEqual(r1.data[0]['current_streak'],10)
+        self.client.delete(reverse('moodBoard:moodEntry',args=[5]))
+        r2 = self.client.get(reverse('moodBoard:moodBoard'))
+        self.assertEqual(r2.data[0]['current_streak'],5)

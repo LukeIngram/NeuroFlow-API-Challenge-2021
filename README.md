@@ -40,7 +40,7 @@ $ cd mood_board/
 And we're going to create an admin user for our API, so 
 we run the following command: 
 ```
-python manage.py createsuperuser
+$ python manage.py createsuperuser
 ```
 Then follow the steps to finish creating your new superuser. 
 
@@ -59,10 +59,12 @@ The first section of the 'mood/' endpoint is located at http://127.0.0.1:8000/ap
 
 If you're not signed in, you'll be met with a 403, & you can use the login button in the top right to autheticate your session. 
 
-If Authenticated, you'll see the "Mood List View" which is a dashboard where users can see all of their mood entries, as well as post new ones with the POST method. All POSTed info persists & is obtianed with the GET method. 
+If Authenticated, you'll see the "Mood List View" which is a dashboard where users can see all of their mood entries, as well as post new ones with the POST method. All POSTed mood entries persists in the internal database & is obtianed with the GET method. 
 
 ### Mood Entry View: 
 Users can view Individual Mood Entries by navigating to http://127.0.0.1:8000/api/mood/[ID] (replacing [ID] with the ID number of the mood entry).
+
+Users can also delete entries in this view if they wish. 
 
 ### Mood Board Information View: 
 Users can find information about their Mood Board at http://127.0.0.1:8000/api/mood/info 
@@ -76,3 +78,12 @@ $ python manage.py test
 ```
 
 ## Production-Info
+As this is an assesment, the API in it's current state, is inadequate for production usage, and if it were to be used, the following changes need to be made:
+### Security Information 
+* The "SECTRET_KEY", while SHA-256, is publicly visible in this REPO, and would typically be hidden within a enviromnent file. 
+* While the buildin djnago.auth User model fits well within the scope of this assesment, a custom user model would b necessary for production use.  
+* "DEBUG" would of course be set to False. 
+
+### Technical Changes
+* This API uses an internal databse & was not designed to handle large quantites of users & interal data. In production external database support (AWS? maybe) would be intergrated. 
+* Currently this system requires all users to be indivdually added by the admin, which would obvously be illogical in a high traffic system. Rather a form-based login & registration structure should be implimented to midigate this.
