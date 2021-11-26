@@ -21,7 +21,7 @@ class MoodEntryView(generics.RetrieveDestroyAPIView):
     def delete(self,request,pk=None):
         entry = get_object_or_404(moodEntry,id=pk)
         entry.delete()
-        return Response({'message': f'Entry {pk} Sucessfully Deleted'},status=status.HTTP_200_OK)
+        return Response({'message': f'Entry {pk} Successfully Deleted'},status=status.HTTP_200_OK)
  
 
 class MoodListView(generics.ListCreateAPIView): 
